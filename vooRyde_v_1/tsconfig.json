@@ -1,0 +1,31 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/vooRyde_Api_v1-e2e"
+    },
+    {
+      "path": "./apps/vooRyde_Api_v1"
+    },
+    {
+      "path": "./apps/vooRyde_Booking_Remix_V_1-e2e"
+    },
+    {
+      "path": "./apps/vooRyde_Booking_Remix_V_1"
+    },
+    {
+      "path": "./apps/auth-server-e2e"
+    },
+    {
+      "path": "./apps/auth-server"
+    },
+    {
+      "path": "./redis-client"
+    },
+    {
+      "path": "./kafka-client"
+    }
+  ]
+}

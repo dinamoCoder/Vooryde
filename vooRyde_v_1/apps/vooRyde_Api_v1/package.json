@@ -1,0 +1,83 @@
+{
+  "name": "@voo-ryde-v-1/vooRyde_Api_v1",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "vooRyde_Api_v1",
+    "targets": {
+      "build": {
+        "executor": "@nx/esbuild:esbuild",
+        "outputs": [
+          "{options.outputPath}"
+        ],
+        "defaultConfiguration": "production",
+        "options": {
+          "platform": "node",
+          "outputPath": "apps/vooRyde_Api_v1/dist",
+          "format": [
+            "cjs"
+          ],
+          "bundle": false,
+          "main": "apps/vooRyde_Api_v1/src/main.ts",
+          "tsConfig": "apps/vooRyde_Api_v1/tsconfig.app.json",
+          "assets": [
+            "apps/vooRyde_Api_v1/src/assets"
+          ],
+          "esbuildOptions": {
+            "sourcemap": true,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        },
+        "configurations": {
+          "development": {},
+          "production": {
+            "generateLockfile": true,
+            "esbuildOptions": {
+              "sourcemap": false,
+              "outExtension": {
+                ".js": ".js"
+              }
+            }
+          }
+        }
+      },
+      "serve": {
+        "continuous": true,
+        "executor": "@nx/js:node",
+        "defaultConfiguration": "development",
+        "dependsOn": [
+          "build"
+        ],
+        "options": {
+          "buildTarget": "vooRyde_Api_v1:build",
+          "runBuildTargetDependencies": false
+        },
+        "configurations": {
+          "development": {
+            "buildTarget": "vooRyde_Api_v1:build:development"
+          },
+          "production": {
+            "buildTarget": "vooRyde_Api_v1:build:production"
+          }
+        }
+      },
+      "test": {
+        "options": {
+          "passWithNoTests": true
+        }
+      },
+      "docker-build": {
+        "dependsOn": [
+          "build"
+        ],
+        "command": "docker build -f apps/vooRyde_Api_v1/Dockerfile . -t vooRyde_Api_v1"
+      }
+    }
+  },
+  "dependencies": {
+    "@prisma/client": "^6.8.2",
+    "prisma": "^6.8.2"
+  }
+}

@@ -1,0 +1,1 @@
+In this we will create all application docker images so that we use this in the production 
